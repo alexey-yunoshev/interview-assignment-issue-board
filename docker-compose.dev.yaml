@@ -1,0 +1,28 @@
+version: "3"
+
+services:
+
+  postgres:
+    container_name: "bugs-dashboard-postgres"
+    image: "postgres:12.2"
+    environment:
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5432:5432"
+
+  adminer:
+    image: adminer
+    ports:
+      - "8080:8080"
+
+  app:
+    container_name: "bugs-dashboard-app"
+    working_dir: "/app"
+    image: "node:12-alpine"
+    command: "npm run start:dev"
+    env_file:
+      - app/.env.dev
+    volumes:
+      - "./app:/app"
+    ports:
+      - "3000:3000"

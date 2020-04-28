@@ -1,0 +1,11 @@
+version: "3"
+
+services:
+
+  postgres:
+    container_name: "bugs-dashboard-postgres"
+    image: "postgres:12.2"
+    env_file:
+      app/.env.test
+    ports:
+      - "5432:5432"
