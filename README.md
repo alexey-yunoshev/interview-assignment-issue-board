@@ -32,6 +32,11 @@ Backend: Node.JS, Python, GoLang - на ваш выбор, база - на ва�
 P.S. Можно на ангуляре, можно сокращать, оставить redux, redux-saga - сделать законченную вещь по мотивам.
 ```
 
+## Run dev
+TODO install deps in docker
+
+TODO add gzip and stuff for express - helmet?
+
 ## Testing 
 
 To run API tests, in the root directory run
