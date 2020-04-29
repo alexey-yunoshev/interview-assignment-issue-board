@@ -1,44 +1,17 @@
-import React, {useEffect} from 'react';
-import {connect} from 'react-redux';
-import {makeStyles} from "@material-ui/core/styles";
+import React from 'react';
 import {Board} from "./Board/Board";
-import {fetchUsers} from "./store/users/actions";
-import {AppDispatch} from "./store/rootAction";
+import {Box} from "@material-ui/core";
 
-const useStyles = makeStyles(() => ({
-    root: {
-        backgroundColor: "#f5faff",
-        display: "flex",
-        justifyContent: "center",
-        minHeight: "100vh",
-        maxHeight: "100vh",
-        minWidth: "100vw",
-        maxWidth: "100vw"
-    },
-}));
-
-interface AppProps {
-    fetchUsers: () => void,
-}
-
-export function AppComponent({fetchUsers}: AppProps) {
-    const classes = useStyles();
-
-    useEffect(() => {
-        fetchUsers()
-    }, [fetchUsers]);
-
+export function App() {
     return (
-        <div className={classes.root}>
+        <Box
+            bgcolor="#f5faff"
+            display="flex"
+            justifyContent="center"
+            className="root"
+            minHeight="100vh"
+        >
             <Board/>
-        </div>
+        </Box>
     );
 }
-
-function mapDispatchToProps(dispatch: AppDispatch) {
-    return {
-        fetchUsers: () => dispatch(fetchUsers())
-    }
-}
-
-export const App = connect(null, mapDispatchToProps)(AppComponent);

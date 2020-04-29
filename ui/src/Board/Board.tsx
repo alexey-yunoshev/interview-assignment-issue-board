@@ -3,7 +3,7 @@ import {makeStyles} from "@material-ui/core/styles";
 import {Title} from "./Title";
 import {Form} from "./Form";
 import {IssueTable} from "./Table";
-import {IssueFetcher} from "../components/IssueFetcher";
+import {Fetcher} from "../components/Fetcher";
 
 const useStyles = makeStyles(({spacing}) => ({
     board: {
@@ -30,7 +30,7 @@ export function Board() {
 
     return (
         <div className={classes.board}>
-            <IssueFetcher/>
+            <Fetcher/>
             <Title/>
             <Form/>
             <IssueTable/>
