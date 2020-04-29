@@ -6,14 +6,20 @@ import {fetchIssues} from "../store/issues/actions";
 import {Query} from "../store/form/types";
 import {UserId} from "../store/users/types";
 import {useEffect} from "react";
+import {fetchUsers} from "../store/users/actions";
 
-export interface IssueFetcherProps {
+export interface FetcherProps {
     assigneeId: UserId,
     query: Query,
+    fetchUsers: () => void,
     fetchIssues: (params: Partial<FetchIssuesParams>) => void,
 }
 
-export function IssueFetcherComponent({assigneeId, query, fetchIssues}: IssueFetcherProps) {
+export function FetcherComponent({assigneeId, query, fetchIssues, fetchUsers}: FetcherProps) {
+    useEffect(() => {
+        fetchUsers()
+    }, [fetchUsers]);
+
     useEffect(() => {
         const params: Partial<FetchIssuesParams> = {};
         if (assigneeId !== 0) {
@@ -32,9 +38,12 @@ export function IssueFetcherComponent({assigneeId, query, fetchIssues}: IssueFet
     return null;
 }
 
-export const IssueFetcher =
+export const Fetcher =
     connect(
         (state: RootState) => ({assigneeId: state.form.assignee, query: state.form.query}),
-        (dispatch: AppDispatch) => ({fetchIssues: (params: Partial<FetchIssuesParams>) => dispatch(fetchIssues(params))}),
+        (dispatch: AppDispatch) => ({
+            fetchIssues: (params: Partial<FetchIssuesParams>) => dispatch(fetchIssues(params)),
+            fetchUsers: () => dispatch(fetchUsers()),
+        }),
     )
-    (IssueFetcherComponent);
+    (FetcherComponent);

@@ -1,12 +1,12 @@
 import {UserId, UserName} from "../users/types";
 
-export interface DisplayIssue {
+export interface RawDisplayIssue {
     id: string,
     title: string,
-    assigneeId: UserId,
-    assigneeName: UserName,
+    assignee_id: UserId,
+    assignee_name: UserName,
 }
 
 export interface IssuesState {
-    issues: Array<DisplayIssue>,
+    issues: Array<RawDisplayIssue>,
 }

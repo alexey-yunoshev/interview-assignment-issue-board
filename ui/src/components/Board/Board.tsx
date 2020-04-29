@@ -1,9 +1,10 @@
 import React from 'react';
 import {makeStyles} from "@material-ui/core/styles";
+
 import {Title} from "./Title";
-import {Form} from "./Form";
+import {Form} from "./Form/Form";
 import {IssueTable} from "./Table";
-import {IssueFetcher} from "../components/IssueFetcher";
+import {Fetcher} from "../Fetcher";
 
 const useStyles = makeStyles(({spacing}) => ({
     board: {
@@ -14,15 +15,6 @@ const useStyles = makeStyles(({spacing}) => ({
         paddingTop: spacing(2),
         width: "800px",
     },
-    assigneeSelect: {
-        backgroundColor: "blue",
-    },
-    searchField: {
-        backgroundColor: "green",
-    },
-    list: {
-        backgroundColor: "black",
-    },
 }));
 
 export function Board() {
@@ -30,7 +22,7 @@ export function Board() {
 
     return (
         <div className={classes.board}>
-            <IssueFetcher/>
+            <Fetcher/>
             <Title/>
             <Form/>
             <IssueTable/>

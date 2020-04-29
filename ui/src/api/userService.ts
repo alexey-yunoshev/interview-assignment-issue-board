@@ -1,4 +1,5 @@
 import axios from "axios";
+
 import {User} from "../store/users/types";
 
 export class UserService {
@@ -9,4 +10,3 @@ export class UserService {
 }
 
 export const userService = new UserService();
-

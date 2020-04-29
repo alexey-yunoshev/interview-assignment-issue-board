@@ -5,12 +5,13 @@ import InputLabel from "@material-ui/core/InputLabel";
 import Select from "@material-ui/core/Select";
 import {MenuItem} from "@material-ui/core";
 import {connect} from "react-redux";
-import {RootState} from "../../store/rootState";
-import {User, UserId} from "../../store/users/types";
-import {AppDispatch} from "../../store/rootAction";
-import {setAssignee} from "../../store/form/actions";
-import {fetchIssues} from "../../store/issues/actions";
-import {FetchIssuesParams} from "../../api/issueService";
+
+import {RootState} from "../../../store/rootState";
+import {User, UserId} from "../../../store/users/types";
+import {AppDispatch} from "../../../store/rootAction";
+import {setAssignee} from "../../../store/form/actions";
+import {fetchIssues} from "../../../store/issues/actions";
+import {FetchIssuesParams} from "../../../api/issueService";
 
 const useStyles = makeStyles(({spacing}) => ({
     formControl: {
@@ -46,14 +47,15 @@ export function AssigneeSelectComponent({assignee, setAssignee, users}: Assignee
     );
 }
 
-const mapStateToProps = (state: RootState) => ({
-    assignee: state.form.assignee,
-    users: state.users.users,
-})
-
-const mapDispatchToProps = (dispatch: AppDispatch) => ({
-    setAssignee: (assigneeId: UserId) => dispatch(setAssignee(assigneeId)),
-    fetchIssues: (params: Partial<FetchIssuesParams>) => dispatch(fetchIssues(params))
-})
-
-export const AssigneeSelect = connect(mapStateToProps, mapDispatchToProps)(AssigneeSelectComponent);
+export const AssigneeSelect =
+    connect(
+        (state: RootState) => ({
+            assignee: state.form.assignee,
+            users: state.users.users,
+        }),
+        (dispatch: AppDispatch) => ({
+            setAssignee: (assigneeId: UserId) => dispatch(setAssignee(assigneeId)),
+            fetchIssues: (params: Partial<FetchIssuesParams>) => dispatch(fetchIssues(params))
+        })
+    )
+    (AssigneeSelectComponent);
