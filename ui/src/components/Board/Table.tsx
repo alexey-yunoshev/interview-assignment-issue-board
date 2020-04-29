@@ -7,11 +7,11 @@ import TableCell from "@material-ui/core/TableCell";
 import TableRow from "@material-ui/core/TableRow";
 import TableBody from "@material-ui/core/TableBody";
 import {connect} from "react-redux";
-import {RootState} from "../store/rootState";
-import {DisplayIssue} from "../store/issues/types";
+import {RootState} from "../../store/rootState";
+import {RawDisplayIssue} from "../../store/issues/types";
 
 export interface IssueTable {
-    issues: Array<DisplayIssue>
+    issues: Array<RawDisplayIssue>
 }
 
 export function IssueTableComponent({issues}: IssueTable) {
@@ -32,7 +32,7 @@ export function IssueTableComponent({issues}: IssueTable) {
                                 {issue.id}
                             </TableCell>
                             <TableCell align="left">{issue.title}</TableCell>
-                            <TableCell align="left">{issue.assigneeName}</TableCell>
+                            <TableCell align="left">{issue.assignee_name}</TableCell>
                         </TableRow>
                     ))}
                 </TableBody>

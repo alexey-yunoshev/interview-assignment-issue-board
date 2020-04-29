@@ -1,9 +1,10 @@
 import React from 'react';
 import {makeStyles} from "@material-ui/core/styles";
+
 import {Title} from "./Title";
-import {Form} from "./Form";
+import {Form} from "./Form/Form";
 import {IssueTable} from "./Table";
-import {Fetcher} from "../components/Fetcher";
+import {Fetcher} from "../Fetcher";
 
 const useStyles = makeStyles(({spacing}) => ({
     board: {
@@ -13,15 +14,6 @@ const useStyles = makeStyles(({spacing}) => ({
         maxWidth: "800px",
         paddingTop: spacing(2),
         width: "800px",
-    },
-    assigneeSelect: {
-        backgroundColor: "blue",
-    },
-    searchField: {
-        backgroundColor: "green",
-    },
-    list: {
-        backgroundColor: "black",
     },
 }));
 

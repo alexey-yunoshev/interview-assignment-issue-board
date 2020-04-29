@@ -1,4 +1,4 @@
-import {DisplayIssue} from "./types";
+import {RawDisplayIssue} from "./types";
 import {FetchIssuesParams} from "../../api/issueService";
 
 export enum IssuesActionType {
@@ -13,7 +13,7 @@ export interface FetchIssuesAction {
 
 export interface SetIssuesAction {
     type: IssuesActionType.SetIssues,
-    payload: Array<DisplayIssue>,
+    payload: Array<RawDisplayIssue>,
 }
 
 export type IssuesAction =
@@ -28,7 +28,7 @@ export function fetchIssues(params: Partial<FetchIssuesParams>): FetchIssuesActi
     }
 }
 
-export function setIssues(issues: Array<DisplayIssue>): SetIssuesAction {
+export function setIssues(issues: Array<RawDisplayIssue>): SetIssuesAction {
     return {
         type: IssuesActionType.SetIssues,
         payload: issues,

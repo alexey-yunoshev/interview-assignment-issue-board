@@ -1,5 +1,5 @@
 import React from 'react';
-import {Board} from "./Board/Board";
+import {Board} from "./components/Board/Board";
 import {Box} from "@material-ui/core";
 
 export function App() {

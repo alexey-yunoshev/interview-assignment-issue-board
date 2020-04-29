@@ -3,10 +3,11 @@ import {makeStyles} from "@material-ui/core/styles";
 import {TextField} from "@material-ui/core";
 import {fromEvent, Subscription} from "rxjs";
 import {debounceTime, map} from "rxjs/operators";
-import {AppDispatch} from "../../store/rootAction";
-import {Query} from "../../store/form/types";
-import {setQuery} from "../../store/form/actions";
 import {connect} from "react-redux";
+
+import {AppDispatch} from "../../../store/rootAction";
+import {Query} from "../../../store/form/types";
+import {setQuery} from "../../../store/form/actions";
 
 const useStyles = makeStyles(() => ({
     searchBar: {
@@ -51,9 +52,12 @@ export function SearchBarComponent({setQuery}: SearchBarProps) {
     );
 }
 
-const mapDispatchToProps = (dispatch: AppDispatch) => ({
-    setQuery: (query: Query) => dispatch(setQuery(query)),
-})
-
-export const SearchBar = connect(null, mapDispatchToProps)(SearchBarComponent);
+export const SearchBar =
+    connect(
+        null,
+        (dispatch: AppDispatch) => ({
+            setQuery: (query: Query) => dispatch(setQuery(query)),
+        }),
+    )
+    (SearchBarComponent);
 

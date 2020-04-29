@@ -1,6 +1,7 @@
 import axios from "axios";
+
 import {UserId} from "../store/users/types";
-import {DisplayIssue} from "../store/issues/types";
+import {RawDisplayIssue} from "../store/issues/types";
 import {Query} from "../store/form/types";
 
 export interface FetchIssuesParams {
@@ -9,8 +10,8 @@ export interface FetchIssuesParams {
 }
 
 export class IssueService {
-    async fetchIssues(params: Partial<FetchIssuesParams>): Promise<Array<DisplayIssue>> {
-        const {data} = await axios.get<Array<DisplayIssue>>('/api/issues', {params});
+    async fetchIssues(params: Partial<FetchIssuesParams>): Promise<Array<RawDisplayIssue>> {
+        const {data} = await axios.get<Array<RawDisplayIssue>>('/api/issues', {params});
         return data;
     }
 }
