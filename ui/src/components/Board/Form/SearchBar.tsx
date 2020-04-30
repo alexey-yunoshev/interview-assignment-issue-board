@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { TextField } from "@material-ui/core";
-import { fromEvent, Subscription } from "rxjs";
+import { fromEvent } from "rxjs";
 import { debounceTime, map } from "rxjs/operators";
 import { connect } from "react-redux";
 
@@ -21,24 +21,28 @@ export interface SearchBarProps {
 
 export function SearchBarComponent({ setQuery }: SearchBarProps) {
   const classes = useStyles();
-  let subscription: Subscription;
 
   const textInput = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const wrapper = textInput.current;
-    if (wrapper !== null) {
-      const input = wrapper.getElementsByTagName("input")[0];
-      const keyup$ = fromEvent(input, "keyup").pipe(
-        map((event) => (event.currentTarget as HTMLInputElement).value),
-        debounceTime(500),
-      );
-      subscription = keyup$.subscribe((query) => {
-        setQuery(query);
-      });
+
+    if (wrapper === null) {
+      return;
     }
+
+    const input = wrapper.getElementsByTagName("input")[0];
+    const keyup$ = fromEvent(input, "keyup").pipe(
+      map((event) => (event.currentTarget as HTMLInputElement).value),
+      debounceTime(500),
+    );
+    const subscription = keyup$.subscribe((query) => {
+      setQuery(query);
+    });
+
     return () => subscription.unsubscribe();
-  }, [textInput]);
+  }, [textInput, setQuery]);
+
   return (
     <TextField
       ref={textInput}
