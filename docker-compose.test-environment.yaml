@@ -12,3 +12,5 @@ services:
       - "server/.env.test"
     networks:
       - "issue-board-test"
+    ports:
+      - "5432:5432"

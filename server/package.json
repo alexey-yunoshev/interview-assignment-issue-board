@@ -4,7 +4,7 @@
   "scripts": {
     "format": "prettier --write \"*/**/*.ts\"",
     "lint": "eslint --fix \"*/**/*.ts\"",
-    "test:e2e": "cross-env NODE_ENV=testing jest --forceExit --runInBand",
+    "test:e2e": "cross-env NODE_ENV=test jest --forceExit --runInBand",
     "build": "tsc -p tsconfig.bulid.json",
     "start:dev": "ts-node-dev --watch src --ignore-watch \"spec.ts$\" src/bin/app.ts",
     "start:prod": "node build/bin/app",
@@ -13,11 +13,14 @@
     "seed": "npx ts-node src/bin/seed.ts"
   },
   "dependencies": {
+    "class-transformer": "^0.2.3",
+    "class-validator": "^0.12.2",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "http-status-codes": "^1.4.0",
     "pg": "^8.0.3",
     "postgres-migrations": "^4.0.3",
+    "reflect-metadata": "^0.1.13",
     "winston": "^3.2.1"
   },
   "devDependencies": {

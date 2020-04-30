@@ -47,6 +47,45 @@ describe("/api/issues", () => {
       });
   });
 
+  test("GET /api/issues?assigneeId=q", (done) => {
+    const assigneeId = 'q';
+    request(app)
+      .get(`/api/issues?assigneeId=${assigneeId}`)
+      .expect(HttpStatus.BAD_REQUEST)
+      .end((err, res) => {
+        if (err) {
+          logger.error(err.message);
+          throw new Error(err);
+        }
+        const constraints = res.body[0].constraints;
+        const expectedConstraints = ['isInt', 'isNumber'];
+        for (const constraint of expectedConstraints) {
+          expect(constraint in constraints).toBe(true);
+        }
+        done();
+      });
+  });
+
+  test("GET /api/issues?query=VERY_LONG",
+    (done) => {
+    const query = '012345678901234567890123456789012345678901234567890123456789';
+    request(app)
+      .get(`/api/issues?query=${query}`)
+      .expect(HttpStatus.BAD_REQUEST)
+      .end((err, res) => {
+        if (err) {
+          logger.error(err.message);
+          throw new Error(err);
+        }
+        const constraints = res.body[0].constraints;
+        const expectedConstraints = ['length'];
+        for (const constraint of expectedConstraints) {
+          expect(constraint in constraints).toBe(true);
+        }
+        done();
+      });
+  });
+
   test("GET /api/issues?assigneeId=2", (done) => {
     const assigneeId = 2;
     request(app)
