@@ -2,6 +2,7 @@ import React from 'react';
 import {makeStyles} from "@material-ui/core/styles";
 import {AssigneeSelect} from "./AssigneeSelect";
 import {SearchBar} from "./SearchBar";
+import {Box} from "@material-ui/core";
 
 const useStyles = makeStyles(({spacing}) => ({
     form: {
@@ -15,9 +16,13 @@ export function Form() {
     const classes = useStyles();
 
     return (
-        <div className={classes.form}>
+        <Box
+            display="flex"
+            alignItems="center"
+            className={classes.form}
+        >
             <AssigneeSelect/>
             <SearchBar/>
-        </div>
+        </Box>
     );
 }
