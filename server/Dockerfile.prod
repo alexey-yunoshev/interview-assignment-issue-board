@@ -14,6 +14,7 @@ RUN npm install --only=prod --registry
 COPY --from=builder /app/build /app/build
 COPY src/lib/db/migrations /app/build/lib/db/migrations
 COPY src/lib/db/seeding /app/build/lib/db/seeding
+COPY src/lib/static /app/build/lib/static
 
 EXPOSE 3000
 

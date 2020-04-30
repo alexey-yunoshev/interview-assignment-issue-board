@@ -1,0 +1,102 @@
+openapi: 3.0.0
+
+servers:
+  - description: Current server
+    url: /api
+info:
+  version: "1.0.0"
+  title: Issue Board API
+  contact:
+    email: alexey.yunoshev@gmail.com
+  license:
+    name: Apache 2.0
+    url: 'http://www.apache.org/licenses/LICENSE-2.0.html'
+paths:
+  /schema:
+    get:
+      summary: shows API schema UI
+
+  /users:
+    get:
+      summary: gets all users
+      operationId: getUsers
+      description: Return an array of all users
+      responses:
+        '200':
+          description: users
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/User'
+        '400':
+          description: bad input parameter
+  /issues:
+    get:
+      summary: finds issues
+      operationId: findIssues
+      description: |
+        By passing in the appropriate options, you can search for issues
+      parameters:
+        - in: query
+          name: assigneeId
+          description: |
+            If passed, only issues with the given assignee id will be returned
+          required: false
+          schema:
+            type: integer
+            minimum: 1
+        - in: query
+          name: query
+          description: |
+            A search query that will be matched against issue id, title, and assignee name
+          required: false
+          schema:
+            type: string
+            maxLength: 50
+      responses:
+        '200':
+          description: search results matching criteria
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/DisplayIssue'
+        '400':
+          description: bad input parameter
+components:
+  schemas:
+    User:
+      type: object
+      required:
+        - id
+        - username
+      properties:
+        id:
+          type: integer
+          example: 1
+        username:
+          type: string
+          example: Violet Evergarden
+    DisplayIssue:
+      type: object
+      required:
+        - id
+        - title
+        - assignee_id
+        - assignee_name
+      properties:
+        id:
+          type: string
+          example: '1'
+        title:
+          type: string
+          example: "User 6451 can't get payment"
+        assignee_id:
+          type: integer
+          example: 1
+        assignee_name:
+          type: string
+          example: Violet Evergarden

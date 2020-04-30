@@ -2,8 +2,8 @@ export type UserId = number;
 export type UserName = string;
 
 export interface User {
-  username: UserName;
   id: UserId;
+  username: UserName;
 }
 
 export interface UserState {
