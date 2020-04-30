@@ -41,7 +41,7 @@ You can open the app in a browser at `localhost:3000`.
 In the root directory run `./scripts/start-dev.sh`.
 
 You can open the app in a browser at `localhost:3000`. For the other
-available services see `docker-compose.dev.yaml`.
+available services see [`docker-compose.dev.yaml`](docker-compose.dev.yaml).
 
 For API schema open `localhost:3001/schema` (`http://localhost:3000/schema` for production build).
 
@@ -56,7 +56,7 @@ npm install
 ```
 
 ## Testing
-For API integration tests and UI tests run `./scripts/test-api.sh` in the root directory.
+For API integration tests and UI tests run [`./scripts/test-api.sh`](./scripts/test-api.sh) in the root directory.
 
 ## Cleaning
-To remove project networks, containers, and volumes run `./scripts/clean.sh`
+To remove project networks, containers, and volumes run [`./scripts/clean.sh`](./scripts/clean.sh)
