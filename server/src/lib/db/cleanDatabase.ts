@@ -2,7 +2,7 @@ import { DbClient } from "./types";
 import { logger } from "../logger";
 
 export async function cleanDatabase(db: DbClient) {
-  logger.info("Cleaning database...");
+  logger.debug("Cleaning database...");
   const tables = ["bugs", "users"];
   for (const table of tables) {
     await Promise.all([
@@ -10,5 +10,5 @@ export async function cleanDatabase(db: DbClient) {
       db.query(`SELECT SETVAL((SELECT pg_get_serial_sequence('${table}', 'id')), 1, false);`),
     ]);
   }
-  logger.info("Successfully cleaned database.");
+  logger.debug("Successfully cleaned database.");
 }

@@ -1,12 +1,17 @@
 version: "3"
 
+networks:
+  issue-board-prod:
+
 services:
 
   postgres:
     container_name: "issue-board-postgres-prod"
     image: "postgres:12.2"
-    environment:
-      POSTGRES_PASSWORD: "postgres"
+    env_file:
+      - "./server/.env.prod"
+    networks:
+      - "issue-board-prod"
 
   server:
     container_name: "issue-board-server-prod"
@@ -15,6 +20,8 @@ services:
       context: "./server"
     env_file:
       - "./server/.env.prod"
+    networks:
+      - "issue-board-prod"
 
   proxy:
     container_name: "issue-board-proxy-prod"
@@ -23,3 +30,5 @@ services:
       context: "."
     ports:
       - "3000:80"
+    networks:
+      - "issue-board-prod"

@@ -1,0 +1,17 @@
+version: "3"
+
+networks:
+  issue-board-test:
+
+services:
+
+  server:
+    container_name: "issue-board-server-test"
+    build:
+      context: "./server"
+      dockerfile: "Dockerfile.dev"
+    command: "npm run test"
+    env_file:
+      - "server/.env.test"
+    networks:
+      - "issue-board-test"

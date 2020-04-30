@@ -1,22 +1,29 @@
 version: "3"
 
+networks:
+  issue-board-dev:
+
 services:
 
   postgres:
-    container_name: "issues-dashboard-postgres"
+    container_name: "issue-board-postgres"
     image: "postgres:12.2"
-    environment:
-      POSTGRES_PASSWORD: "postgres"
+    env_file:
+      - "server/.env.dev"
     ports:
       - "5432:5432"
+    networks:
+      - "issue-board-dev"
 
   adminer:
     image: "adminer"
     ports:
       - "8080:8080"
+    networks:
+      - "issue-board-dev"
 
   server:
-    container_name: "issues-dashboard-server"
+    container_name: "issue-board-server"
     build:
       context: "./server"
       dockerfile: "Dockerfile.dev"
@@ -28,9 +35,11 @@ services:
       - "/app/node_modules"
     ports:
       - "3001:3000"
+    networks:
+      - "issue-board-dev"
 
   ui:
-    container_name: "issues-dashboard-ui"
+    container_name: "issue-board-ui"
     build:
       context: "./ui"
       dockerfile: "Dockerfile.dev"
@@ -41,3 +50,5 @@ services:
       - "/app/node_modules"
     ports:
       - "3000:3000"
+    networks:
+      - "issue-board-dev"
