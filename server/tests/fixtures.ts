@@ -48,47 +48,47 @@ export const users: Array<User> = [
   },
 ];
 
-export const bugs: Array<RawDisplayIssue> = [
+export const issues: Array<RawDisplayIssue> = [
   {
     id: "1",
     title: "User 615335 can't make payment",
-    assigneeId: 1,
-    assigneeName: "Violet Evergarden",
+    assignee_id: 1,
+    assignee_name: "Violet Evergarden",
   },
   {
     id: "2",
     title: "The cat is stuck in the door. The hole is too narrow.",
-    assigneeId: 2,
-    assigneeName: "Asakura Yoh",
+    assignee_id: 2,
+    assignee_name: "Asakura Yoh",
   },
   {
     id: "3",
     title: "The penguins can't fly anymore",
-    assigneeId: 3,
-    assigneeName: "Sakata Gintoki",
+    assignee_id: 3,
+    assignee_name: "Sakata Gintoki",
   },
   {
     id: "4",
     title: "No pizza in the box",
-    assigneeId: 3,
-    assigneeName: "Sakata Gintoki",
+    assignee_id: 3,
+    assignee_name: "Sakata Gintoki",
   },
   {
     id: "5",
     title: "User 894632 got 145 notifications on payment",
-    assigneeId: 2,
-    assigneeName: "Asakura Yoh",
+    assignee_id: 2,
+    assignee_name: "Asakura Yoh",
   },
   {
     id: "6",
     title: "Client got no cat in the bag.",
-    assigneeId: 3,
-    assigneeName: "Sakata Gintoki",
+    assignee_id: 3,
+    assignee_name: "Sakata Gintoki",
   },
   {
     id: "7",
     title: "Balance won't update",
-    assigneeId: 3,
-    assigneeName: "Sakata Gintoki",
+    assignee_id: 3,
+    assignee_name: "Sakata Gintoki",
   },
 ];

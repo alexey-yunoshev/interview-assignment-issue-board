@@ -1,5 +1,6 @@
-# Interview Assignment - Issues Dashboard
+# Interview Assignment - Issue Board
 
+## Assignment
 ```
 Задание: написать приложение, отображающее данные в табличном виде с возможностью фильтрации.
 

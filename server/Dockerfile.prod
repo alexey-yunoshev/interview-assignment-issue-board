@@ -1,15 +1,16 @@
 FROM node:12-alpine AS builder
 WORKDIR /app
 COPY package* ./
-RUN npm install
+RUN npm ci
 COPY src ./src
 COPY tsconfig* ./
 RUN npm run build
 
 FROM node:12-alpine
+ENV NODE_ENV=NODE_ENV
 WORKDIR /app
 COPY package* ./
-RUN npm install --only=prod --registry
+RUN npm ci --only=prod --registry
 COPY --from=builder /app/build /app/build
 COPY src/lib/db/migrations /app/build/lib/db/migrations
 COPY src/lib/db/seeding /app/build/lib/db/seeding

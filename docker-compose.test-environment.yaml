@@ -1,0 +1,14 @@
+version: "3"
+
+networks:
+  issue-board-test:
+
+services:
+
+  postgres:
+    container_name: "issue-board-postgres-test"
+    image: "postgres:12.2"
+    env_file:
+      - "server/.env.test"
+    networks:
+      - "issue-board-test"

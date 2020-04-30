@@ -7,7 +7,7 @@ import { logger } from "../logger";
 const MIGRATIONS_DIRECTORY = path.resolve(__dirname, "migrations");
 
 export async function applyMigrations(client: DbClient) {
-  logger.info("Applying migrations...");
+  logger.debug("Applying migrations...");
   await migrate({ client }, MIGRATIONS_DIRECTORY);
-  logger.info("Successfully applied migrations.");
+  logger.debug("Successfully applied migrations.");
 }
