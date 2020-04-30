@@ -1,31 +1,30 @@
-import {Pool} from "pg"
-import {config} from "../config"
-import {applyMigrations} from "./applyMigrations";
-import {seed} from "./seeding/seed";
-import {logger} from "../logger";
-import {waitForDb} from "./connectWithRetry";
-import {cleanDatabase} from "./cleanDatabase";
+import { Pool } from "pg";
+import { config } from "../config";
+import { applyMigrations } from "./applyMigrations";
+import { seed } from "./seeding/seed";
+import { logger } from "../logger";
+import { waitForDb } from "./waitForDb";
+import { cleanDatabase } from "./cleanDatabase";
 
 export const db = new Pool({
-    host: config.postgres.host,
-    port: config.postgres.port,
-    user: config.postgres.user,
-    password: config.postgres.password,
-    database: config.postgres.database,
-})
+  host: config.postgres.host,
+  port: config.postgres.port,
+  user: config.postgres.user,
+  password: config.postgres.password,
+  database: config.postgres.database,
+});
 
 async function prepare() {
-    await waitForDb(db);
-    if (config.postgres.applyMigrations) {
-        await applyMigrations(db);
-    }
-    if (config.postgres.seedData) {
-        await cleanDatabase(db);
-        await seed(db);
-    }
+  await waitForDb(db);
+  if (config.postgres.applyMigrations) {
+    await applyMigrations(db);
+  }
+  if (config.postgres.seedData) {
+    await cleanDatabase(db);
+    await seed(db);
+  }
 }
 
-prepare()
-    .catch((e) => {
-        logger.error(e.message, e);
-    })
+prepare().catch((e) => {
+  logger.error(e.message, e);
+});

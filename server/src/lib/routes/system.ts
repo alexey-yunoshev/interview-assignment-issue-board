@@ -1,7 +1,7 @@
-import { Router } from 'express'
+import { Router } from "express";
 
-export const systemRouter = Router()
+export const systemRouter = Router();
 
-systemRouter.get('/ping', (req, res) => {
-    res.send('pong');
-})
+systemRouter.get("/ping", (req, res) => {
+  res.send("pong");
+});
