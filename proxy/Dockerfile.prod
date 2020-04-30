@@ -1,0 +1,17 @@
+FROM node:12-alpine AS builder
+WORKDIR /app
+COPY ./ui/package* ./
+RUN npm install
+COPY ./ui/src ./src
+COPY ./ui/public ./public
+COPY ./ui/tsconfig* ./
+RUN npm run build
+
+FROM nginx:1-alpine
+COPY ./proxy/nginx.conf /etc/nginx/nginx.conf
+RUN rm -rf /usr/share/nginx/html/*
+COPY --from=builder /app/build /usr/share/nginx/html
+
+EXPOSE 80
+
+CMD ["nginx", "-g", "daemon off;"]

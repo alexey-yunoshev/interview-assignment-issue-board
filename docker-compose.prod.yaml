@@ -1,0 +1,25 @@
+version: "3"
+
+services:
+
+  postgres:
+    container_name: "issue-board-postgres-prod"
+    image: "postgres:12.2"
+    environment:
+      POSTGRES_PASSWORD: "postgres"
+
+  server:
+    container_name: "issue-board-server-prod"
+    build:
+      dockerfile: "Dockerfile.prod"
+      context: "./server"
+    env_file:
+      - "./server/.env.prod"
+
+  proxy:
+    container_name: "issue-board-proxy-prod"
+    build:
+      dockerfile: "./proxy/Dockerfile.prod"
+      context: "."
+    ports:
+      - "3000:80"
