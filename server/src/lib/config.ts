@@ -2,7 +2,7 @@ import { logger } from "./logger";
 import { config as dotenv } from "dotenv";
 import path from "path";
 
-if (process.env.NODE_ENV === "test") {
+if (process.env.NODE_ENV === "testing") {
   dotenv({
     path: path.resolve(__dirname, "..", "..", ".env.test"),
   });

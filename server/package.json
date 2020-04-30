@@ -1,8 +1,10 @@
 {
+  "name": "issue-board-server",
+  "private": true,
   "scripts": {
     "format": "prettier --write \"*/**/*.ts\"",
     "lint": "eslint --fix \"*/**/*.ts\"",
-    "test": "NODE_ENV=test jest --forceExit --runInBand",
+    "test:e2e": "cross-env NODE_ENV=testing jest --forceExit --runInBand",
     "build": "tsc -p tsconfig.bulid.json",
     "start:dev": "ts-node-dev --watch src --ignore-watch \"spec.ts$\" src/bin/app.ts",
     "start:prod": "node build/bin/app",
@@ -26,6 +28,7 @@
     "@types/supertest": "^2.0.8",
     "@typescript-eslint/parser": "^2.29.0",
     "@typescript-eslint/eslint-plugin": "^2.29.0",
+    "cross-env": "^7.0.2",
     "eslint": "^6.8.0",
     "execa": "^4.0.0",
     "get-port": "^5.1.1",

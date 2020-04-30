@@ -1,7 +1,7 @@
 FROM node:12-alpine AS builder
 WORKDIR /app
 COPY ./ui/package* ./
-RUN npm ci
+RUN npm install
 COPY ./ui/src ./src
 COPY ./ui/public ./public
 COPY ./ui/tsconfig* ./

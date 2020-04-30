@@ -10,8 +10,11 @@ services:
     build:
       context: "./server"
       dockerfile: "Dockerfile.dev"
-    command: "npm run test"
+    command: "npm run test:e2e"
     env_file:
       - "server/.env.test"
     networks:
       - "issue-board-test"
+    volumes:
+      - "./server:/app"
+      - "/app/node_modules"
