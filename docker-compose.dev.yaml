@@ -17,23 +17,27 @@ services:
 
   server:
     container_name: "issues-dashboard-server"
-    working_dir: "/app"
-    image: "node:12-alpine"
+    build:
+      context: "./server"
+      dockerfile: "Dockerfile.dev"
     command: "npm run start:dev"
     env_file:
       - "server/.env.dev"
     volumes:
       - "./server:/app"
+      - "/app/node_modules"
     ports:
       - "3001:3000"
 
   ui:
     container_name: "issues-dashboard-ui"
-    working_dir: "/app"
-    image: "node:12-alpine"
+    build:
+      context: "./ui"
+      dockerfile: "Dockerfile.dev"
     command: "npm run start"
     stdin_open: true
     volumes:
       - "./ui:/app"
+      - "/app/node_modules"
     ports:
       - "3000:3000"
