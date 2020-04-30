@@ -14,7 +14,7 @@ const initialState: FormState = {
   query: "",
 };
 
-export function formReducer(state = initialState, action: FormAction): Partial<FormState> {
+export function formReducer(state = initialState, action: FormAction): FormState {
   switch (action.type) {
     case Action.SetAssignee:
       return { ...state, assignee: action.payload };

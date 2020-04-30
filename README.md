@@ -33,9 +33,6 @@ Backend: Node.JS, Python, GoLang - на ваш выбор, база - на ва�
 P.S. Можно на ангуляре, можно сокращать, оставить redux, redux-saga - сделать законченную вещь по мотивам.
 ```
 
-## TODOs
-2. frontend tests
-
 ## Production
 To run the app with production images, in the root directory run `./scripts/start-prod.sh`.
 You can open the app in a browser at `localhost:3000`.
@@ -59,7 +56,7 @@ npm install
 ```
 
 ## Testing
-For API integration tests, in the root directory run `./scripts/test-api.sh`
+For API integration tests and UI tests run `./scripts/test-api.sh` in the root directory.
 
 ## Cleaning
 To remove project networks, containers, and volumes run `./scripts/clean.sh`
