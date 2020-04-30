@@ -34,7 +34,7 @@ services:
       - "./server:/app"
       - "/app/node_modules"
     ports:
-      - "3001:3000"
+      - "4000:3000"
     networks:
       - "issue-board-dev"
 
