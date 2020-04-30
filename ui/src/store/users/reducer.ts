@@ -1,15 +1,15 @@
-import {UserState} from "./types";
-import {UsersAction, UsersActionType as Action} from "./actions";
+import { UserState } from "./types";
+import { UsersAction, UsersActionType as Action } from "./actions";
 
 const initialState: UserState = {
-    users: [],
-}
+  users: [],
+};
 
 export function usersReducer(state = initialState, action: UsersAction): UserState {
-    switch (action.type) {
-        case Action.SetUsers:
-            return {...state, users: action.payload};
-        default:
-            return state;
-    }
+  switch (action.type) {
+    case Action.SetUsers:
+      return { ...state, users: action.payload };
+    default:
+      return state;
+  }
 }
