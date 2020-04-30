@@ -34,14 +34,30 @@ P.S. Можно на ангуляре, можно сокращать, остав
 ```
 
 ## TODOs
-1. install deps in docker
+1. validation
 
-1. add gzip and stuff for express - helmet?
+## Production
+To run the app with production images, in the root directory run `./scripts/start-prod.sh`.
+You can open the app in a browser at `localhost:3000`.
 
-1. use material ui grid
-## Testing 
+## Development
+In the root directory run `./scripts/start-dev.sh`.
 
-To run API tests, in the root directory run
+You can open the app in a browser at `localhost:3000`. For the other
+available services see `docker-compose.dev.yaml`.
+
+If you need IDE support, you will also need to install dependencies:
 ```
-./scripts/test-api.sh
+cd server
+npm install
+cd ..
+
+cd ui
+npm install
 ```
+
+## Testing
+For API integration tests, in the root directory run `./scripts/test-api.sh`
+
+## Cleaning
+To remove project networks, containers, and volumes run `./scripts/clean.sh`
