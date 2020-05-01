@@ -24,7 +24,7 @@ export function findIssuesByQuery(query: string) {
         FROM bugs as b
         LEFT JOIN users as u ON b.assignee_id = u.id
         WHERE
-            b.id = $1
+            b.id ILIKE $1
             OR b.title ILIKE $1
             OR u.username ILIKE $1;
         `,

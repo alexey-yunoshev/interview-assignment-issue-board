@@ -2,13 +2,13 @@ import {Router} from "express";
 import {INTERNAL_SERVER_ERROR} from "http-status-codes";
 
 import {logger} from "../logger";
-import {RawDisplayIssue} from "../display-bug/rawDisplayIssue";
+import {RawDisplayIssue} from "../display-issue/rawDisplayIssue";
 import {
   findAllIssues,
   findIssuesByAssigneeId,
   findIssuesByQuery,
   findIssuesByQueryAndAssigneeId,
-} from "../display-bug/display-bug.service";
+} from "../display-issue/display-issues.service";
 import {isDefined, isUndefined} from "../utils";
 import {QueryResult} from "pg";
 import {IsInt, IsNumber, IsOptional, Length} from "class-validator";

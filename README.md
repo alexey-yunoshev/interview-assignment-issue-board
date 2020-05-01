@@ -56,7 +56,7 @@ npm install
 ```
 
 ## Testing
-For API integration tests and UI tests run [`./scripts/test-api.sh`](./scripts/test-api.sh) in the root directory.
+For API integration tests and UI tests run [`./scripts/test.sh`](scripts/test.sh) in the root directory.
 
 ## Cleaning
 To remove project networks, containers, and volumes run [`./scripts/clean.sh`](./scripts/clean.sh)

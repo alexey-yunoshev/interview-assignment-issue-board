@@ -5,7 +5,7 @@ import * as HttpStatus from "http-status-codes";
 import request from "supertest";
 
 import { endDbConnection, getDbConnection, logger, startApp, stopApp } from "./utils";
-import { RawDisplayIssue } from "../src/lib/display-bug/rawDisplayIssue";
+import { RawDisplayIssue } from "../src/lib/display-issue/rawDisplayIssue";
 import { issues as sampleIssues } from "./fixtures";
 import { Pool } from "pg";
 import { seed } from "../src/lib/db/seeding/seed";
@@ -123,6 +123,28 @@ describe("/api/issues", () => {
         expect(issues).toHaveLength(expectedLength);
         const bugIds = new Set(issues.map((bug) => bug.id));
         const expectedBugIds = ["1", "5"];
+        for (const id of expectedBugIds) {
+          expect(bugIds.has(id)).toBe(true);
+        }
+        done();
+      });
+  });
+
+  test("GET /api/issues?query=7", (done) => {
+    const query = "7";
+    request(app)
+      .get(`/api/issues?query=${query}`)
+      .expect(HttpStatus.OK)
+      .end((err, res) => {
+        if (err) {
+          logger.error(err.message);
+          throw new Error(err);
+        }
+        const issues: Array<RawDisplayIssue> = res.body;
+        const expectedLength = 1;
+        expect(issues).toHaveLength(expectedLength);
+        const bugIds = new Set(issues.map((bug) => bug.id));
+        const expectedBugIds = ["7"];
         for (const id of expectedBugIds) {
           expect(bugIds.has(id)).toBe(true);
         }

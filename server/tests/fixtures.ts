@@ -1,4 +1,4 @@
-import { RawDisplayIssue } from "../src/lib/display-bug/rawDisplayIssue";
+import { RawDisplayIssue } from "../src/lib/display-issue/rawDisplayIssue";
 import { User } from "../src/lib/user/user";
 
 export const users: Array<User> = [
