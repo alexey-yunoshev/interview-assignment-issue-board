@@ -1,6 +1,6 @@
-import { call, delay, put } from "redux-saga/effects";
+import { call, put } from "redux-saga/effects";
 import { FetchIssuesAction, setIssues } from "./actions";
-import { hideAlert, showAlert } from "../app/actions";
+import { showAlert } from "../system/actions";
 import { issueService } from "../../api/issueService";
 
 export function* fetchIssues(action: FetchIssuesAction) {
@@ -9,8 +9,6 @@ export function* fetchIssues(action: FetchIssuesAction) {
     yield put(setIssues(issues));
   } catch (e) {
     console.error(e);
-    yield put(showAlert());
-    yield delay(2000);
-    yield put(hideAlert());
+    yield put(showAlert("error", "Failed to get issues"));
   }
 }

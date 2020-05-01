@@ -1,5 +1,5 @@
 import { UsersAction } from "./users/actions";
-import { SystemAction } from "./app/actions";
+import { SystemAction } from "./system/actions";
 import { Dispatch } from "react";
 import { FormAction } from "./form/actions";
 import { IssuesAction } from "./issues/actions";

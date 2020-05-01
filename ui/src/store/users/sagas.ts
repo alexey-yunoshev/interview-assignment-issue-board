@@ -1,7 +1,7 @@
-import { call, put, delay } from "redux-saga/effects";
+import { call, put } from "redux-saga/effects";
 import { userService } from "../../api/userService";
 import { setUsers } from "./actions";
-import { hideAlert, showAlert } from "../app/actions";
+import { showAlert } from "../system/actions";
 
 export function* fetchUsers() {
   try {
@@ -9,8 +9,6 @@ export function* fetchUsers() {
     yield put(setUsers(users));
   } catch (e) {
     console.error(e);
-    yield put(showAlert());
-    yield delay(2000);
-    yield put(hideAlert());
+    yield put(showAlert("error", "Failed to get users."));
   }
 }

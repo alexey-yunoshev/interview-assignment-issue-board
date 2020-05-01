@@ -1,3 +1,5 @@
+import { Alert, Message, Severity } from "./types";
+
 export enum SystemActionType {
   ShowAlert = "[System] show alert",
   HideAlert = "[System] hide alert",
@@ -5,6 +7,7 @@ export enum SystemActionType {
 
 export interface SystemShowAlertAction {
   type: SystemActionType.ShowAlert;
+  payload: Alert;
 }
 
 export interface SystemHideAlertAction {
@@ -13,9 +16,13 @@ export interface SystemHideAlertAction {
 
 export type SystemAction = SystemShowAlertAction | SystemHideAlertAction;
 
-export function showAlert(): SystemShowAlertAction {
+export function showAlert(severity: Severity, message: Message): SystemShowAlertAction {
   return {
     type: SystemActionType.ShowAlert,
+    payload: {
+      message,
+      severity,
+    },
   };
 }
 
