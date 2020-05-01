@@ -174,6 +174,29 @@ describe("/api/issues", () => {
       });
   });
 
+  test("GET /api/issues?query=2&assigneeId=2", (done) => {
+    const query = "2";
+    const assigneeId = "2";
+    request(app)
+      .get(`/api/issues?query=${query}&assigneeId=${assigneeId}`)
+      .expect(HttpStatus.OK)
+      .end((err, res) => {
+        if (err) {
+          logger.error(err.message);
+          throw new Error(err);
+        }
+        const issues: Array<RawDisplayIssue> = res.body;
+        const expectedLength = 2;
+        expect(issues).toHaveLength(expectedLength);
+        const bugIds = new Set(issues.map((bug) => bug.id));
+        const expectedBugIds = ["2", "5"];
+        for (const id of expectedBugIds) {
+          expect(bugIds.has(id)).toBe(true);
+        }
+        done();
+      });
+  });
+
   test("GET /api/issues?query=cat&assigneeId=3", (done) => {
     const query = "cat";
     const assigneeId = "3";
