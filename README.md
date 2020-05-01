@@ -43,7 +43,7 @@ In the root directory run [`./scripts/start-dev.sh`](./scripts/start-dev.sh).
 You can open the app in a browser at `localhost:3000/`. For the other
 available services see [`docker-compose.dev.yaml`](docker-compose.dev.yaml).
 
-For **API schema** open `localhost:4000/schema` (`localhost:3000//schema` for production build).
+For **API schema** open `localhost:4000/schema` (`localhost:3000/schema` for production build).
 
 If you need IDE support, you will also need to install dependencies:
 ```
